@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
+import {MatButtonModule} from '@angular/material/button';
+import{ MatDialogModule} from '@angular/material';
+  import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
@@ -10,7 +11,9 @@ import { HomePageComponent } from './home-page/home-page.component';
     HomePageComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

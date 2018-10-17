@@ -1,4 +1,4 @@
-#clock{
+/* #clock{
   width:10rem;
   background-color: black;
   font-family: cursive;
@@ -9,4 +9,18 @@
   bottom: 0;
   margin-left: 40%;
   margin-right: 40%;
+} */
+
+.homepage{
+  margin-top:15rem;
+  margin-left:15rem;
+}
+
+button{
+  margin-bottom:5rem;
+}
+
+button:hover{
+  background:rgb(111, 111, 238);
+  color:white;
 }
