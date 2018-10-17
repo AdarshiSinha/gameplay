@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogConfig} from '@angular/material';
+import {PlayersComponent} from '../players/players.component';
 
 export interface DialogData {
 
@@ -22,7 +23,7 @@ export class HomePageComponent {
 name: string;
 country:string;
 password: string;
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog){ }
 
 //   ngOnInit() {
 //     console.log(this.counter);
@@ -49,31 +50,15 @@ password: string;
 //   this.score+=this.counter*2;
 //   this.counter=10;
 // }
+
 openDialog(): void {
-  const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-    width: '250px',
-    data: {name: this.name, animal: this.country,password: this.password}
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-  });
-}
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = false;
+  dialogConfig.autoFocus = true;
+  dialogConfig.width = "60%";
+  this.dialog.open(PlayersComponent,dialogConfig);
 
 }
 
-@Component({
-  selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog-overview-example-dialog.html',
-})
-export class DialogOverviewExampleDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 
 }
