@@ -1,0 +1,22 @@
+#clock{
+  width:10rem;
+  background-color: black;
+  font-family: cursive;
+  font-size: 2rem;
+  color:white;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  margin-left: 40%;
+  margin-right: 40%;
+}
+
+mat-card{
+  width:60%;
+  background-image: url('/src/assets/img/single.jpg');
+  background-size: cover;
+  margin-left:10rem;
+  border-bottom:5rem;
+}
+
+

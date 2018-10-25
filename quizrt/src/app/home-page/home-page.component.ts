@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {PlayersComponent} from '../players/players.component';
+import {LoginComponent} from '../login/login.component';
 
 export interface DialogData {
 
@@ -36,7 +37,7 @@ password: string;
 //     this.counter--;
 //     if (this.counter <= 0) {
 //      // this.mainClock="Time Up :p"
-//       // clearInterval(intervalMain);
+      // clearInterval(intervalMain);
 //       this.resetTimer();
 
 //     }
@@ -55,8 +56,17 @@ openDialog(): void {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = false;
   dialogConfig.autoFocus = true;
-  dialogConfig.width = "60%";
+  dialogConfig.width = "40%";
   this.dialog.open(PlayersComponent,dialogConfig);
+
+}
+
+openDialog1():void {
+  const dialogConfig=new MatDialogConfig();
+  dialogConfig.disableClose=false;
+  dialogConfig.autoFocus = true;
+  dialogConfig.width = "40%";
+  this.dialog.open(LoginComponent,dialogConfig);
 
 }
 

@@ -1,0 +1,29 @@
+<button mat-raised-button  color="primary" (click)="showQuestions()">Let's Play</button>
+<div class="abc" *ngIf="counter>=1 && !gameOver && start">
+
+      <mat-card>
+        <h2 style="color:white">{{currentQuestion?.problemStatement}}</h2><br>
+        <mat-radio-group class="radio-group" (click)="nextQuestion()">
+            <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.options" [value]="o.id" style="color:white">
+              {{o.content}}<br>
+
+          </mat-radio-button>
+            <br>
+            <mat-card class="sc" style="color:white">
+            Your Score is {{score}}
+            </mat-card>
+          </mat-radio-group>
+      </mat-card>
+
+</div>
+
+<div *ngIf="gameOver">
+   <mat-card style="color:white">Your Final Score is {{score}} </mat-card>
+   <button mat-raised-button  color="primary" [routerLink]="['play']">Play Again</button>
+</div>
+
+<div id="clock">
+  {{counter}}
+</div>
+
+

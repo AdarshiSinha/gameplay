@@ -55,11 +55,11 @@
   </mat-grid-list>
 </form> -->
 <div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder="Enter Name" >
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Enter Name"  >
   </mat-form-field>
   <br>
-  <mat-form-field>
+  <mat-form-field class="example-full-width">
 
     <mat-select placeholder="Enter Country">
 
@@ -69,14 +69,20 @@
 
   </mat-form-field>
   <br>
-  <mat-form-field>
-    <input matInput placeholder="Enter Email">
+  <mat-form-field class="example-full-width">
+    <input matInput type="email" [pattern]="emailPattern" placeholder="Enter Email">
+    <mat-error>Invalid email address.</mat-error>
   </mat-form-field>
+
+
+
   <br>
-
-
+  <mat-form-field class="example-full-width">
+  <input matInput type="password"  minlength="8" placeholder="Set Password(8 chars min.)">
+    </mat-form-field>
+    <br>
   <div class="button-row">
-      <button mat-raised-button color="primary" type="submit">Sign Up</button>
+      <button mat-raised-button color="primary" type="submit" [routerLink]="['play']">Sign Up</button>
       <button mat-raised-button color="warn" >Give Up</button>
     </div>
 </div>
