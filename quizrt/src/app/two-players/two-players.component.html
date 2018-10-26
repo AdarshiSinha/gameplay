@@ -1,4 +1,7 @@
-<button mat-raised-button  color="primary" (click)="showQuestions()">Let's Play</button>
+<button (click)="sleep()" style="background-color:black; color:white;" >
+ Search for opponent
+</button>
+<button mat-raised-button  *ngIf="client_found" color="primary" (click)="showQuestions()">Let's Play</button>
 <!-- <button mat-raised-button color="primary" (click)="wait()">Wait For 1 min.</button> -->
 <div class="abc" *ngIf="counter>=1 && !gameOver && start">
 

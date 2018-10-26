@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as signalR from '@aspnet/signalr';
+import { ControlContainer } from '@angular/forms';
+import { throwToolbarMixedModesError } from '@angular/material';
+import { delay } from 'q';
 @Component({
   selector: 'app-two-players',
   templateUrl: './two-players.component.html',
@@ -23,6 +26,7 @@ export class TwoPlayersComponent implements OnInit {
   gameOver = false;
   username = new Date().getTime();
   connection1:any;
+  client_found:boolean=false;
   currentUser: any;
   forignuser: any;
   currentUserScore: any;
@@ -37,6 +41,7 @@ export class TwoPlayersComponent implements OnInit {
     const connection = new signalR.HubConnectionBuilder()
       .withUrl('https://localhost:5001/chathub')
       .build();
+
       connection.start().then(() => console.log('connection established')).catch((err) => console.log("Error::: ", err));
       this.connection1=connection;
       // connection.on('send',(username:string, score: number)=>{
@@ -49,6 +54,14 @@ export class TwoPlayersComponent implements OnInit {
       // divMessages1.scrollTop = divMessages1.scrollHeight;
     // });
 
+    connection.on('users',(username1:number)=>{
+      console.log(username1 +" connected");
+      if(this.username!=username1)
+      {
+        this.client_found=true;
+        // this.showQuestions();
+      }
+    })
     connection.on('receive', (username:string, score:number) => {
       // let m2 = document.createElement('div');
 
@@ -57,14 +70,31 @@ export class TwoPlayersComponent implements OnInit {
 
       // divMessages2.appendChild(m2);
       // divMessages2.scrollTop = divMessages2.scrollHeight;
-      this.forignUserScore = score
+      this.forignUserScore = score;
      this.forignuser = username;
       // if(this.username.toString()=== username1)
           console.log(username, score, "this is the message form the server")
 
     });
 
+    connection.on('counter',(counter1:number)=> {
+      this.counter=counter1;
+      if (this.counter <= 0) {
+        this.nextQuestion();
+        if(this.questionCounter>=7)
+        {
+          console.log("Game Over");
+          this.gameOver=true;
+        }
+      }
+    });
 
+
+
+  }
+  sleep(){
+    delay(10000);
+    this.connection1.send("OnConnectedAsync",this.username);
 
   }
 
@@ -83,24 +113,24 @@ export class TwoPlayersComponent implements OnInit {
   }
 
   gameClock() {
-    const intervalMain = setInterval(() => {
-    this.counter--;
-    if (this.counter <= 0) {
-      this.nextQuestion();
-      //this.resetTimer();
-      if(this.questionCounter>=7)
-      {
-        clearInterval(intervalMain);
-        this.gameOver=true;
-      }
-    }
-  }, 1000);
-  // this.connection1.send("StartClock",this.counter);
+  //   const intervalMain = setInterval(() => {
+  //   this.counter--;
+  //   if (this.counter <= 0) {
+  //     this.nextQuestion();
+  //     //this.resetTimer();
+  //     if(this.questionCounter>=7)
+  //     {
+  //       clearInterval(intervalMain);
+  //       this.gameOver=true;
+  //     }
+  //   }
+  // }, 1000);
+  this.connection1.send("StartClock",this.counter);
 }
 
 nextQuestion(){
   this.resetTimer();
-  console.log(this.username, this.score, "sjdfksdhkjfhskjdhfkjashkdjfshdf")
+  console.log(this.username, this.score, "before its sent to another client");
   this.connection1.send("sendScore", this.username, this.score);
   this.questionCounter++;
   this.currentQuestion = this.questions[this.questionCounter];
@@ -113,6 +143,7 @@ resetTimer(){
   this.scoreCalculator();
         // .then(() => tbMessage1.value = "");
   this.counter=10;
+  this.connection1.send("StartClock",this.counter);
 }
 
 scoreCalculator(){
@@ -120,3 +151,4 @@ scoreCalculator(){
 }
 
 }
+
