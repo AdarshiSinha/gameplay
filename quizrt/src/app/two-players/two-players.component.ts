@@ -23,6 +23,10 @@ export class TwoPlayersComponent implements OnInit {
   gameOver = false;
   username = new Date().getTime();
   connection1:any;
+  currentUser: any;
+  forignuser: any;
+  currentUserScore: any;
+  forignUserScore: any;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -53,25 +57,14 @@ export class TwoPlayersComponent implements OnInit {
 
       // divMessages2.appendChild(m2);
       // divMessages2.scrollTop = divMessages2.scrollHeight;
-     score=this.score;
+      this.forignUserScore = score
+     this.forignuser = username;
       // if(this.username.toString()=== username1)
           console.log(username, score, "this is the message form the server")
 
     });
 
-    connection.on('receive', (username1:string, score1:number) => {
-      // let m2 = document.createElement('div');
 
-      // m2.innerHTML =
-      //   `<div class='message__author'>${username}</div><div>${score}</div>`;
-
-      // divMessages2.appendChild(m2);
-      // divMessages2.scrollTop = divMessages2.scrollHeight;
-     score1=this.score;
-      // if(this.username.toString()=== username1)
-          console.log(username1, score1, "this is the message form the server")
-
-    });
 
   }
 
@@ -102,10 +95,12 @@ export class TwoPlayersComponent implements OnInit {
       }
     }
   }, 1000);
+  // this.connection1.send("StartClock",this.counter);
 }
 
 nextQuestion(){
   this.resetTimer();
+  console.log(this.username, this.score, "sjdfksdhkjfhskjdhfkjashkdjfshdf")
   this.connection1.send("sendScore", this.username, this.score);
   this.questionCounter++;
   this.currentQuestion = this.questions[this.questionCounter];
@@ -114,10 +109,14 @@ nextQuestion(){
 resetTimer(){
   this.i++;
   //this.quesCount++;
-  this.score+=this.counter*2;
-
+  // this.score+=this.counter*2;
+  this.scoreCalculator();
         // .then(() => tbMessage1.value = "");
   this.counter=10;
+}
+
+scoreCalculator(){
+  this.score+=this.counter*2;
 }
 
 }

@@ -1,4 +1,5 @@
 <button mat-raised-button  color="primary" (click)="showQuestions()">Let's Play</button>
+<!-- <button mat-raised-button color="primary" (click)="wait()">Wait For 1 min.</button> -->
 <div class="abc" *ngIf="counter>=1 && !gameOver && start">
 
       <mat-card>
@@ -12,10 +13,13 @@
             <mat-card id="divMessages1" class="messages" style="color:white">
               {{username}}:  {{ score }}
             </mat-card>
-            <mat-card id="divMessages2" class="messages" style="color:white">
-              {{username1}}:  {{ score1 }}
+            <mat-card id="divMessages2" *ngIf="forignuser != username" class="messages" style="color:white">
+              {{forignuser}}:  {{ forignUserScore }}
             </mat-card>
-            <!-- Your Score is {{score}} -->
+            <!-- <mat-card id="divMessages2" *ngIf="forignuser == username" class="messages" style="color:white">
+              {{username}}: {{ score}}
+            </mat-card> -->
+
           </mat-radio-group>
       </mat-card>
 
