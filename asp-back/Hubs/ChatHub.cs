@@ -58,7 +58,7 @@ namespace asp_back.hubs {
         }
         }
         public async Task SendScore (string user, int score){
-            Console.WriteLine(user + "this is User" + score + "this is score");
+            // Console.WriteLine(user + "this is User" + score + "this is score");
             await Clients.Caller.SendAsync("receive",user, score);
         }
         
@@ -70,6 +70,10 @@ namespace asp_back.hubs {
         public Task SendMessageToGroups (string message) {
             List<string> groups = new List<string> () { "SignalR Users" };
             return Clients.Groups (groups).SendAsync ("ReceiveMessage", message);
+        }
+
+        public async Task sendQuestions(string ques) {
+            await Clients.All.SendAsync("questions", ques);
         }
 
         public  async Task OnConnectedAsync (string username) {
