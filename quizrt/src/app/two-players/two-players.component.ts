@@ -78,20 +78,23 @@ export class TwoPlayersComponent implements OnInit {
       // divMessages2.scrollTop = divMessages2.scrollHeight;
       this.forignUserScore = score;
      this.forignuser = username;
+
       // if(this.username.toString()=== username1)
-          // console.log(username, score, "this is the message form the server")
+          console.log(username, score, "this is the message form the server")
 
     });
 
     connection.on('counter',(counter1:number)=> {
       this.counter=counter1;
       if (this.counter <= 0) {
-        this.nextQuestion();
+        if (this.arr.length>1 && this.letsplay === 0)
+       { this.nextQuestion();
         if(this.questionCounter>=7)
         {
           // console.log("Game Over");
           this.gameOver=true;
         }
+      }
       }
     });
 
