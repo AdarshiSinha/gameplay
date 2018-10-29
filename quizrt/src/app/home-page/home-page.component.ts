@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {PlayersComponent} from '../players/players.component';
 import {LoginComponent} from '../login/login.component';
+import {AuthService, GoogleLoginProvider} from 'angular-6-social-login';
 
 export interface DialogData {
 
@@ -24,7 +25,7 @@ export class HomePageComponent {
 name: string;
 country:string;
 password: string;
-  constructor(private dialog: MatDialog){ }
+  constructor(private dialog: MatDialog, private socialAuthService: AuthService){ }
 
 //   ngOnInit() {
 //     console.log(this.counter);
@@ -51,6 +52,17 @@ password: string;
 //   this.score+=this.counter*2;
 //   this.counter=10;
 // }
+
+public socialSignIn(socialPlatform: string){
+  let socialPlatformProvider;
+  if(socialPlatform== "google"){
+    socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+  }
+
+  this.socialAuthService.signIn(socialPlatformProvider).then(
+    (userData)=> {console.log(socialPlatform +" sign in data: ", userData);}
+  );
+}
 
 openDialog(): void {
   const dialogConfig = new MatDialogConfig();

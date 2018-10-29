@@ -2,7 +2,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body{
-  background-image: url('/src/assets/img/bgimg2.jpg');
+  background-image: url('/src/assets/img/q1.jpg');
   background-position: fixed;
   background-size:cover;
 }
@@ -10,3 +10,9 @@ body{
   border-bottom-color: red !important;
   box-shadow: 0 1px 0 0 red !important;
 } */
+@media only screen and (max-width: 600px){
+  body{
+    background-image: url('/src/assets/img/quiz.jpg');
+
+}
+}

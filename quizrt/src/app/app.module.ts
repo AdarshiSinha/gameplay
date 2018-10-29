@@ -22,9 +22,24 @@ import { ThreePlayersComponent } from './three-players/three-players.component';
 import { FourPlayersComponent } from './four-players/four-players.component';
 import {MatCardModule} from '@angular/material/card';
 import { ChatComponent } from './chat/chat.component';
+import { SocialLoginModule,  AuthServiceConfig, GoogleLoginProvider} from "angular-6-social-login";
 // import { PlayerService } from './player.service';
 // import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 // import {ErrorStateMatcher} from '@angular/material/core';
+
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+    [
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("146798745966-lj51tb9pmdpam7a2d7k375fq221didg0.apps.googleusercontent.com")
+      }
+
+    ]
+)
+return config;
+}
+
 
 @NgModule({
   declarations: [
@@ -37,7 +52,7 @@ import { ChatComponent } from './chat/chat.component';
     TwoPlayersComponent,
     ThreePlayersComponent,
     FourPlayersComponent,
-    ChatComponent,
+    ChatComponent
     // PlayerService
   ],
   imports: [
@@ -54,9 +69,17 @@ import { ChatComponent } from './chat/chat.component';
     BrowserAnimationsModule,
     MatInputModule,
     AppRoutingModule,
-    MatCardModule
+    MatCardModule,
+    SocialLoginModule
   ],
-  providers: [],
+
+
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
+  ],
   bootstrap: [AppComponent],
   entryComponents :[PlayersComponent,
    LoginComponent
