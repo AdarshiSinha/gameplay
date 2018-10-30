@@ -2,20 +2,20 @@
 <button mat-raised-button class="chat" [routerLink]="['chat']">Chat w. Friends</button>
 
 
-<div class="links" *ngIf="play">
+<!-- <div class="links" *ngIf="play">
   <mat-grid-list [cols]="breakpoint" rows="4" cols="1" (window:resize)="onResize($event)">
   <mat-grid-tile><a class="btn btn-primary" [routerLink]="['single-player']">1 Player</a></mat-grid-tile>
   <mat-grid-tile><a class="btn btn-primary" [routerLink]="['two-players']">2 Players</a></mat-grid-tile>
   <mat-grid-tile><a class="btn btn-primary" [routerLink]="['three-players']">3 Players</a></mat-grid-tile>
   <mat-grid-tile><a class="btn btn-primary" [routerLink]="['four-players']">4 Players</a></mat-grid-tile>
 </mat-grid-list>
-</div>
+</div> -->
 
-<!--
-  <mat-list role="list">
+
+  <mat-list class="list" *ngIf="play">
   <mat-list-item><a class="btn btn-primary" [routerLink]="['single-player']">1 Player</a></mat-list-item>
   <mat-list-item><a class="btn btn-primary" [routerLink]="['two-players']">2 Players</a></mat-list-item>
   <mat-list-item><a class="btn btn-primary" [routerLink]="['three-players']">3 Players</a></mat-list-item>
   <mat-list-item><a class="btn btn-primary" [routerLink]="['four-players']">4 Players</a></mat-list-item>
 </mat-list>
- -->
+

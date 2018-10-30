@@ -23,6 +23,7 @@ import { FourPlayersComponent } from './four-players/four-players.component';
 import {MatCardModule} from '@angular/material/card';
 import { ChatComponent } from './chat/chat.component';
 import { SocialLoginModule,  AuthServiceConfig, GoogleLoginProvider} from "angular-6-social-login";
+import {MatListModule} from '@angular/material/list';
 // import { PlayerService } from './player.service';
 // import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 // import {ErrorStateMatcher} from '@angular/material/core';
@@ -70,7 +71,8 @@ return config;
     MatInputModule,
     AppRoutingModule,
     MatCardModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatListModule
   ],
 
 
