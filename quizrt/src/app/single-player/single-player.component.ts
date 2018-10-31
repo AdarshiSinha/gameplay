@@ -34,7 +34,7 @@ export class SinglePlayerComponent implements OnInit {
     console.log('called showQuestions');
     this.http.get('http://localhost:3000/questions').subscribe((res: any) => {
     this.questions = res;
-    this.currentQuestion = this.questions[this.questionCounter];
+
     this.shouldDisplayQuestions = true;
     this.gameClock();
     console.log(this.questions[0].options);
@@ -44,16 +44,17 @@ export class SinglePlayerComponent implements OnInit {
 
   gameClock() {
     const intervalMain = setInterval(() => {
+      this.currentQuestion = this.questions[this.questionCounter];
     this.counter--;
     if (this.counter <= 0) {
-      this.nextQuestion();
+      this.nextQuestion();}
       //this.resetTimer();
       if(this.questionCounter>=7)
       {
         clearInterval(intervalMain);
         this.gameOver=true;
       }
-    }
+
   }, 1000);
 }
 

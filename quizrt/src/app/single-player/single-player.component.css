@@ -51,3 +51,7 @@
  .btn{
   margin-left: 10%;
  }
+ .radio-group{
+  display: inline-flex;
+  flex-direction: column;
+ }
