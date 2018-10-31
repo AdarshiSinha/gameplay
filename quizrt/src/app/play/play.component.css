@@ -6,3 +6,9 @@ mat-list-item{
 margin-bottom: 5rem;
 margin-left:5rem;
 }
+.body{
+background-image: url('/src/assets/img/q1.jpg');
+background-position: fixed;
+background-size: 100%;
+min-height: -webkit-fill-available;
+}

@@ -12,12 +12,15 @@
 } */
 
 .homepage{
-  margin-top:15rem;
-  margin-left:15rem;
+  background-image: url('/src/assets/img/q1.jpg');
+   background-position: fixed;
+   background-size:100%;
+  min-height: -webkit-fill-available;
 }
 
 button{
-  margin-bottom:5rem;
+  margin-top:10rem;
+  margin-left: 10rem;
 }
 
 button:hover{
