@@ -19,27 +19,27 @@ namespace asp_back.hubs {
         public ChatHub(){
             _userRepository = IUserRepository.GetInstance();
         }
-        #region IDisconnect event handler
-                public Task Disconnect(){
+        // #region IDisconnect event handler
+        //         public Task Disconnect(){
 
-                    User user = _userRepository.ConnectedUsers.Where(u => u.Id.Equals(Context.ConnectionId)).FirstOrDefault();
-                    if (user != null)
-                    {
-                        _userRepository.RemoveUser(user);
-                        _userRepository.RemoveFromWaitingList(user);
-                    }
-                    return null;
-                }
+        //             User user = _userRepository.ConnectedUsers.Where(u => u.Id.Equals(Context.ConnectionId)).FirstOrDefault();
+        //             if (user != null)
+        //             {
+        //                 _userRepository.RemoveUser(user);
+        //                 _userRepository.RemoveFromWaitingList(user);
+        //             }
+        //             return null;
+        //         }
 
-        #endregion
+        // #endregion
 
-        #region PongR event handlers
-                public void Joined()
-                {
+        // #region PongR event handlers
+        //         public void Joined()
+        //         {
                    
                     
-                }
-        #endregion
+        //         }
+        // #endregion
         public async Task NewMessage(string username, string message)
         {
             await Clients.All.SendAsync("messageReceived", username, message);
@@ -50,11 +50,14 @@ namespace asp_back.hubs {
         }
 
         public async Task StartClock(int i){
-            while(i>=0)
+            while(i>0)
         {
             await Clients.All.SendAsync("counter",i);
             Thread.Sleep(1000);
             i--;
+        }
+        if(i==0){
+        Thread.Sleep(1000);
         }
         }
         public async Task SendScore (string user, int score){

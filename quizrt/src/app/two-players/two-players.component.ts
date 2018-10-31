@@ -69,13 +69,7 @@ export class TwoPlayersComponent implements OnInit {
       }
     })
     connection.on('receive', (username:string, score:number) => {
-      // let m2 = document.createElement('div');
-
-      // m2.innerHTML =
-      //   `<div class='message__author'>${username}</div><div>${score}</div>`;
-
-      // divMessages2.appendChild(m2);
-      // divMessages2.scrollTop = divMessages2.scrollHeight;
+      
       this.forignUserScore = score;
      this.forignuser = username;
 
@@ -86,7 +80,7 @@ export class TwoPlayersComponent implements OnInit {
 
     connection.on('counter',(counter1:number)=> {
       this.counter=counter1;
-      if (this.counter <= 0) {
+      if (this.counter <= 1) {
         if (this.arr.length>1 && this.letsplay === 0)
        { this.nextQuestion();
         if(this.questionCounter>=7)
