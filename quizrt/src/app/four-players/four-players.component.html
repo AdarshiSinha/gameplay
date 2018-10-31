@@ -7,14 +7,14 @@
 <div class="abc" *ngIf="counter>=1 && !gameOver">
 
   <mat-card class="mc">
-    <h2 style="color:rgb(10, 10, 10)">{{currentQuestion.problemStatement}}</h2><br>
+    <h2 style="color:white">{{currentQuestion.problemStatement}}</h2><br>
     <mat-radio-group class="radio-group" (click)="scoreCalculator()">
-        <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.options" [value]="o.id" style="color:black">
+        <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.options" [value]="o.id" style="color:white">
           {{o.content}}<br>
       </mat-radio-button>
-
+    </mat-radio-group>
         <br>
-
+  </mat-card>
         <mat-card class="sc">
         <mat-card id="divMessages1" class="messages" style="color:black">
           {{username}}:  {{ score }}
@@ -25,8 +25,8 @@
         <mat-card id="divMessages2" *ngIf="forignuser == username" class="messages" style="color:black">
           {{forignuser}}: {{ forignUserScore}}
         </mat-card> -->
-      </mat-card>
-      </mat-radio-group>
+      <!-- </mat-card>
+      </mat-radio-group> -->
   </mat-card>
 
 </div>
