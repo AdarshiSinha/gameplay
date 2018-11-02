@@ -11,14 +11,6 @@
   margin-right: 40%;
 }
 
-/* mat-card{
-  width:60%;
-  background-image: url('/src/assets/img/single.jpg');
-  background-size: cover;
-  margin-left:10rem;
-  border-bottom:5rem;
-} */
-
 .mc{
   width:80%;
   height: 30rem;
@@ -28,6 +20,7 @@
   margin-left:10rem;
   border-bottom:5rem;
  }
+
  .sc{
   width:80%;
   height: 10rem;
@@ -36,11 +29,13 @@
   margin-left:10rem;
   border-bottom:5rem;
   }
+
 .abc
 {
 text-align:center;
 justify-content:center;
 }
+
 .radio-group{
   display: inline-flex;
   flex-direction: column;
