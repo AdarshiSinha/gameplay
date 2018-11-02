@@ -48,15 +48,7 @@ export class TwoPlayersComponent implements OnInit {
 
       connection.start().then(() => console.log('connection established')).catch((err) => console.log("Error::: ", err));
       this.connection1=connection;
-      // connection.on('send',(username:string, score: number)=>{
-      //   let m1 = document.createElement('div');
 
-      //   m1.innerHTML =
-      //     `<div class='message__author'>${username}</div><div>${score}</div>`;
-
-      //   divMessages1.appendChild(m1);
-      // divMessages1.scrollTop = divMessages1.scrollHeight;
-    // });
 
     connection.on('users',(username1:number)=>{
       // console.log(username1 +" connected");
@@ -64,39 +56,37 @@ export class TwoPlayersComponent implements OnInit {
       if(this.username!=username1)
       {
         this.client_found=true;
-        if(this.arr.length>0) alert('Player 2 wants to play');
+       if(this.arr.length>0)alert('Player 2 wants to play');
         // this.showQuestions();
       }
     })
     connection.on('receive', (username:string, score:number) => {
-      
+
       this.forignUserScore = score;
      this.forignuser = username;
 
-      // if(this.username.toString()=== username1)
-          console.log(username, score, "this is the message form the server")
+
+
 
     });
 
     connection.on('counter',(counter1:number)=> {
       this.counter=counter1;
-      if (this.counter <= 1) {
+      if (this.counter <= 0) {
         if (this.arr.length>1 && this.letsplay === 0)
-       { this.nextQuestion();
+       { this.nextQuestion();}}
         if(this.questionCounter>=7)
         {
           // console.log("Game Over");
           this.gameOver=true;
         }
-      }
-      }
+
+
     });
 
     connection.on('questions',(question:string)=>{
     this.currentQuestion=JSON.parse(question);
-    // this.op=JSON.parse(this.currentQuestion.options);
-    // console.log(this.currentQuestion.problemStatement +" after it came from server");
-    // console.log(this.currentQuestion.options.content+" after it came from the server");
+
     }
     );
 
@@ -109,7 +99,7 @@ export class TwoPlayersComponent implements OnInit {
       this.letsplay++ ;
       alert('sending request to player1')
     }
-    delay(10000);
+    // delay(10000);
     this.connection1.send("OnConnectedAsync",this.username);
 
   }
@@ -119,54 +109,43 @@ export class TwoPlayersComponent implements OnInit {
 
     this.start=true;
     // console.log('called showQuestions');
-    this.http.get('http://localhost:3000/questions').subscribe((res: any) => {
+    if(this.arr.length>1 && this.letsplay===0)
+   { this.http.get('http://localhost:3000/questions').subscribe((res: any) => {
     this.questions = res;
     this.currentQuestion = this.questions[this.questionCounter];
     var cq=JSON.stringify(this.currentQuestion);
-    // console.log(JSON.stringify(this.currentQuestion));
-    // if(this.arr.length>1 && this.letsplay===0)
+
     this.connection1.send("sendQuestions",cq);
     this.shouldDisplayQuestions = true;
     this.gameClock();
-    // console.log(this.questions[0].options);
+
+
 
     });
   }
+  }
 
   gameClock() {
-  //   const intervalMain = setInterval(() => {
-  //   this.counter--;
-  //   if (this.counter <= 0) {
-  //     this.nextQuestion();
-  //     //this.resetTimer();
-  //     if(this.questionCounter>=7)
-  //     {
-  //       clearInterval(intervalMain);
-  //       this.gameOver=true;
-  //     }
-  //   }
-  // }, 1000);
   this.connection1.send("StartClock",this.counter);
 }
 
 nextQuestion(){
-  this.resetTimer();
-  // console.log(this.username, this.score, "before its sent to another client");
-  // this.connection1.send("sendScore", this.username, this.score);
+  if(this.arr.length>1 && this.letsplay===0)
+  {this.resetTimer();
   this.questionCounter++;
-  this.currentQuestion = this.questions[this.questionCounter];
+
+ this.currentQuestion = this.questions[this.questionCounter];
   var cq=JSON.stringify(this.currentQuestion);
   // if(this.arr.length>1 && this.letsplay===0)
     this.connection1.send("sendQuestions",cq);
 
+  }
+
+
 }
 
 resetTimer(){
-  this.i++;
-  //this.quesCount++;
-  // this.score+=this.counter*2;
-  // this.scoreCalculator();
-        // .then(() => tbMessage1.value = "");
+
   this.counter=10;
   this.connection1.send("StartClock",this.counter);
 }

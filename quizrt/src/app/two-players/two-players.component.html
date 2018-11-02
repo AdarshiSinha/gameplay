@@ -1,10 +1,10 @@
 <button mat-raised-button class="abc" (click)="sleep()" style="background-color:black; color:white;" >
  I want to play
 </button>
-<button mat-raised-button  *ngIf="arr.length>1 && letsplay === 0 " color="primary" (click)="showQuestions()">Let's Play</button>
+<button mat-raised-button  *ngIf="" color="primary" (click)="showQuestions()">Let's Play</button>
 <!-- <button mat-raised-button color="primary" (click)="wait()">Wait For 1 min.</button> -->
 
-<div class="abc" *ngIf="counter>=1 && !gameOver">
+<div class="abc" *ngIf="start && !gameOver">
       <mat-card class="mc">
         <h2 style="color:white">{{currentQuestion.problemStatement}}</h2><br>
         <mat-radio-group class="radio-group" (click)="scoreCalculator()">
@@ -20,19 +20,17 @@
             <mat-card id="divMessages1" class="messages" style="color:black">
               {{username}}:  {{ score }}
             </mat-card>
-            <mat-card id="divMessages2" *ngIf="forignuser != username" class="messages" style="color:black">
+            <mat-card id="divMessages2" class="messages" style="color:black">
               {{forignuser}}:  {{ forignUserScore }}
             </mat-card>
-            <mat-card id="divMessages2" *ngIf="forignuser == username" class="messages" style="color:black">
-              {{forignuser}}: {{ forignUserScore}}
-            </mat-card>
+
         </mat-card>
           <!-- </mat-radio-group> -->
       <!-- </mat-card> -->
 
 </div>
 
-<div id="clock">
+<div id="clock" *ngIf="!gameOver">
   {{counter}}
 </div>
 
