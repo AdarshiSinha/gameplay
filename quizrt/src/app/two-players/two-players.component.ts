@@ -12,34 +12,27 @@ import { delay } from 'q';
 export class TwoPlayersComponent implements OnInit {
 
   counter:number = 10;
-  res: any = [ ];
   questions = [ ];
-  players = [];
-  playRes: any[];
   i:number=0;
   name: string;
-  letsplay : number = 0 ;
-  arr : any = [] ;
   score:number=0;
   questionCounter = 0;
   shouldDisplayQuestions = false;
   currentQuestion : any;
+  users_found:boolean=false;
   start:boolean=false;
   gameOver = false;
   username = new Date().getTime();
   connection1:any;
-  client_found: boolean=false;
+  client_found: number=1;
   currentUser: any;
   forignuser: any;
   currentUserScore: any;
-  forignUserScore: any;
+  forignUserScore: number=0;
   op: any;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    const divMessages1: HTMLDivElement = document.querySelector('#divMessages1');
-    const divMessages2: HTMLDivElement = document.querySelector('#divMessages2');
-
 
 
     const connection = new signalR.HubConnectionBuilder()
@@ -52,11 +45,12 @@ export class TwoPlayersComponent implements OnInit {
 
     connection.on('users',(username1:number)=>{
       // console.log(username1 +" connected");
-      this.arr.push(username1);
       if(this.username!=username1)
       {
-        this.client_found=true;
-       if(this.arr.length>0)alert('Player 2 wants to play');
+        this.client_found++;
+       alert('Player 2 wants to play');
+       this.forignuser=username1;
+      //  this.client_found--;
         // this.showQuestions();
       }
     })
@@ -64,24 +58,31 @@ export class TwoPlayersComponent implements OnInit {
 
       this.forignUserScore = score;
      this.forignuser = username;
-
+      console.log(this.forignuser+" "+this.forignUserScore+" sent from another client")
 
 
 
     });
 
-    connection.on('counter',(counter1:number)=> {
+    connection.on('game',(gameOver:boolean)=>{
+    this.gameOver=gameOver;
+      console.log(this.gameOver+ " returned to all");
+  });
+
+    connection.on('counter',(counter1:number, question:number)=> {
       this.counter=counter1;
       if (this.counter <= 0) {
-        if (this.arr.length>1 && this.letsplay === 0)
-       { this.nextQuestion();}}
+
+        if(this.users_found===true){this.nextQuestion();
         if(this.questionCounter>=7)
         {
           // console.log("Game Over");
           this.gameOver=true;
+          console.log("Game Stopped");
+          connection.send("gameOver",this.gameOver);
         }
-
-
+      }
+      }
     });
 
     connection.on('questions',(question:string)=>{
@@ -95,11 +96,11 @@ export class TwoPlayersComponent implements OnInit {
 
   }
   sleep(){
-    if(this.client_found == true ) {
-      this.letsplay++ ;
-      alert('sending request to player1')
+    if(this.client_found==2 ) {
+
+      alert('2 players joined');
+      this.users_found=true;
     }
-    // delay(10000);
     this.connection1.send("OnConnectedAsync",this.username);
 
   }
@@ -109,8 +110,9 @@ export class TwoPlayersComponent implements OnInit {
 
     this.start=true;
     // console.log('called showQuestions');
-    if(this.arr.length>1 && this.letsplay===0)
-   { this.http.get('http://localhost:3000/questions').subscribe((res: any) => {
+
+
+   this.http.get('http://localhost:3000/questions').subscribe((res: any) => {
     this.questions = res;
     this.currentQuestion = this.questions[this.questionCounter];
     var cq=JSON.stringify(this.currentQuestion);
@@ -122,16 +124,16 @@ export class TwoPlayersComponent implements OnInit {
 
 
     });
-  }
+
+
   }
 
   gameClock() {
-  this.connection1.send("StartClock",this.counter);
+  this.connection1.send("StartClock",this.counter,this.questionCounter);
 }
 
 nextQuestion(){
-  if(this.arr.length>1 && this.letsplay===0)
-  {this.resetTimer();
+ this.resetTimer();
   this.questionCounter++;
 
  this.currentQuestion = this.questions[this.questionCounter];
@@ -139,15 +141,15 @@ nextQuestion(){
   // if(this.arr.length>1 && this.letsplay===0)
     this.connection1.send("sendQuestions",cq);
 
-  }
+ }
 
 
-}
+
 
 resetTimer(){
 
   this.counter=10;
-  this.connection1.send("StartClock",this.counter);
+  this.connection1.send("StartClock",this.counter,this.questionCounter);
 }
 
 scoreCalculator(){

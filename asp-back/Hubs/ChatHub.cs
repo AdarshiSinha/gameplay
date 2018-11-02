@@ -30,12 +30,16 @@ namespace asp_back.hubs {
         }
         #endregion 
         #region StartClock
-        public async Task StartClock(int i){
+        public async Task StartClock(int i, int questionCounter){
             while(i>=0)
         {
             await Clients.All.SendAsync("counter",i);
             Thread.Sleep(1000);
             i--;
+            if(questionCounter>=7)
+            {
+                break;
+            }
         }
     
         }
@@ -60,6 +64,12 @@ namespace asp_back.hubs {
         #region sendQuestions
         public async Task sendQuestions(string ques) {
             await Clients.All.SendAsync("questions", ques);
+        }
+        #endregion
+        #region gameOver
+        public async Task gameOver(bool game ){
+            Console.WriteLine("Reached game over");
+            await Clients.All.SendAsync("game",game);
         }
         #endregion
         #region OnConnectedAsync
