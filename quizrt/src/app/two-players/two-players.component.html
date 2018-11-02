@@ -1,21 +1,25 @@
 <button mat-raised-button class="abc" (click)="sleep()" style="background-color:black; color:white;" >
- I want to play
+   I want to play
 </button>
+<<<<<<< HEAD
 <button mat-raised-button  *ngIf="users_found" color="primary" (click)="showQuestions()">Let's Play</button>
 <!-- <button mat-raised-button color="primary" (click)="wait()">Wait For 1 min.</button> -->
+=======
+<button mat-raised-button  *ngIf="" color="primary" (click)="showQuestions()">Let's Play</button>
+>>>>>>> 5816c53641dbd7c4fc97f7749ec806a5074288c8
 
 <div class="abc" *ngIf="!gameOver">
       <mat-card class="mc">
-        <h2 style="color:white">{{currentQuestion.problemStatement}}</h2><br>
-        <mat-radio-group class="radio-group" (click)="scoreCalculator()">
+         <h2 style="color:white">{{currentQuestion.problemStatement}}</h2><br>
+         <mat-radio-group class="radio-group" (click)="scoreCalculator()">
             <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.options" [value]="o.id" style="color:white">
-              {{o.content}}<br>
-              <!-- <img mat-card-image src="/src/assets/img/double.png"> -->
+                {{o.content}}<br>
              </mat-radio-button>
-</mat-radio-group>
-            <br>
+         </mat-radio-group>
+         <br>
       </mat-card>
 
+<<<<<<< HEAD
         <mat-card class="sc">
             <mat-card id="divMessages1" class="messages" style="color:black">
               {{username}}: <br> {{ score }}
@@ -23,12 +27,16 @@
             <mat-card >
               {{forignuser}}:
               <div id="divMessages2" class="messages" style="color:black">  {{ forignUserScore }}</div>
+=======
+      <mat-card class="sc">
+          <mat-card id="divMessages1" class="messages" style="color:black">
+              {{username}}:  {{ score }}
+           </mat-card>
+           <mat-card id="divMessages2" class="messages" style="color:black">
+              {{forignuser}}:  {{ forignUserScore }}
+>>>>>>> 5816c53641dbd7c4fc97f7749ec806a5074288c8
             </mat-card>
-
-        </mat-card>
-          <!-- </mat-radio-group> -->
-      <!-- </mat-card> -->
-
+      </mat-card>
 </div>
 
 <div id="clock" *ngIf="!gameOver">

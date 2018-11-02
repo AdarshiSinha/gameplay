@@ -1,35 +1,28 @@
 <button mat-raised-button  color="primary" (click)="showQuestions()">Let's Play</button>
 <div class="abc" *ngIf="counter>=1 && !gameOver && start">
-
      <mat-card class="mc">
        <h2 style="color:white">{{currentQuestion?.problemStatement}}</h2><br>
        <mat-radio-group class="radio-group" (click)="nextQuestion()">
            <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.options" [value]="o.id" style="color:white">
              {{o.content}}<br>
-         </mat-radio-button>
-           <br>
-         </mat-radio-group>
+          </mat-radio-button>
+          <br>
+        </mat-radio-group>
      </mat-card>
 
      <mat-card class="sc" style="color:black">
-    <h3>   Your Score is {{score}} </h3>
-       </mat-card>
-
+        <h3> Your Score is {{score}} </h3>
+     </mat-card>
 </div>
-
-<!-- <div *ngIf="gameOver">
-  <mat-card class="bc" style="color:blue">Your Final Score is {{score}} </mat-card>
-  <button mat-raised-button  color="primary" [routerLink]="['play']">Play Again</button>
-</div> -->
 
 <div *ngIf="gameOver" class="gameover">
   <mat-card class="cc">
-   <mat-card-title style="color:blue">Your Final Score is {{score}} </mat-card-title>
-   <button mat-raised-button class="btn"  color="primary" [routerLink]="['play']">Play Again</button>
-   <img mat-card-lg-image src="/src/assets/img/q8.jpg">
-</mat-card>
- </div>
+    <mat-card-title style="color:blue">Your Final Score is {{score}} </mat-card-title>
+       <button mat-raised-button class="btn"  color="primary" [routerLink]="['play']">Play Again</button>
+       <img mat-card-lg-image src="/src/assets/img/q8.jpg">
+    </mat-card>
+</div>
 
 <div id="clock" *ngIf="!gameOver">
- {{counter}}
+  {{counter}}
 </div>
