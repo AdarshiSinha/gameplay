@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
 import { HttpClient } from '@angular/common/http';
 import { delay } from 'q';
+
 @Component({
   selector: 'app-three-players',
   templateUrl: './three-players.component.html',
@@ -18,6 +19,7 @@ export class ThreePlayersComponent implements OnInit {
   currentQuestion:any;
   questions:any=[];
   score:number=0;
+  score1=[0,0];
   gameOver:boolean=false;
   start:boolean=false;
   shouldDisplayQuestions:boolean=false;
@@ -35,32 +37,42 @@ export class ThreePlayersComponent implements OnInit {
 
       connection.on('users',(username1:string)=>{
         // console.log(username1 +" connected");
-        this.arr.push(username1);
+
         if(this.username!=username1)
         {
+          this.arr.push(username1);
           this.no_of_players++;
-          if(this.arr.length>0) alert('Player 2 wants to play');
+          if(this.arr.length>0) alert('Player '+ this.no_of_players+' wants to play');
         }
       })
 
       connection.on('receive', (username:string, score:number) => {
-
-            console.log(username, score, "this is the message form the server")
+            if(username==this.arr[0])
+            {
+              this.score1[0]=score;
+            }
+            else if(username==this.arr[1])
+            {
+              this.score1[1]=score;
+            }
+                       // console.log(username, score, "this is the message form the server")
 
       });
 
-      connection.on('counter',(counter1:number)=> {
+      connection.on('counter',(counter1:number,questionCounter:number)=> {
         this.counter=counter1;
-        if (this.counter <= 1) {
+        if (this.counter <= 0) {
           if (this.users_found==true)
          { this.nextQuestion();
-          if(this.questionCounter>=7)
+          if(questionCounter>=7)
           {
             // console.log("Game Over");
             this.gameOver=true;
+            console.log(Math.max(this.score1[0],this.score1[1],this.score));
           }
         }
         }
+
       });
 
       connection.on('questions',(question:string)=>{
@@ -86,9 +98,9 @@ export class ThreePlayersComponent implements OnInit {
 
     this.start=true;
     // console.log('called showQuestions');
-    this.http.get('http://localhost:3000/questions').subscribe((res: any) => {
+    this.http.get('http://172.23.238.164:8080/api/quizrt/question').subscribe((res: any) => {
     this.questions = res;
-    this.currentQuestion = this.questions[this.questionCounter];
+    this.currentQuestion = this.questions[Math.floor((Math.random() * 100) + 1)];
     var cq=JSON.stringify(this.currentQuestion);
     // console.log(JSON.stringify(this.currentQuestion));
     // if(this.arr.length>1 && this.letsplay===0)
@@ -101,14 +113,14 @@ export class ThreePlayersComponent implements OnInit {
   }
   gameClock() {
 
-    this.connection1.send("StartClock",this.counter);
+    this.connection1.send("StartClock",this.counter,this.questionCounter);
   }
 
   nextQuestion(){
     this.resetTimer();
 
     this.questionCounter++;
-    this.currentQuestion = this.questions[this.questionCounter];
+    this.currentQuestion = this.questions[Math.floor((Math.random() * 100) + 1)];
     var cq=JSON.stringify(this.currentQuestion);
     // if(this.arr.length>1 && this.letsplay===0)
       this.connection1.send("sendQuestions",cq);
@@ -117,11 +129,15 @@ export class ThreePlayersComponent implements OnInit {
 
   resetTimer(){
     this.counter=10;
-    this.connection1.send("StartClock",this.counter);
+    this.connection1.send("StartClock",this.counter,this.questionCounter);
   }
 
-  scoreCalculator(){
-    this.score+=this.counter*2;
+  scoreCalculator(optionsobject: any){
+    if(optionsobject.isCorrect==true)
+   { this.score+=this.counter*2;}
+   else{
+     this.score+=0;
+   }
     this.connection1.send("sendScore", this.username, this.score);
   }
 

@@ -8,7 +8,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { PlayersComponent } from './players/players.component';
 import {MatFormFieldModule, MatInputModule} from '@angular/material';
 import {MatRadioModule} from '@angular/material/radio';
-import {MatGridListModule} from '@angular/material/grid-list';
+import {MatGridListModule, MatGridList} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -24,6 +24,7 @@ import {MatCardModule} from '@angular/material/card';
 import { ChatComponent } from './chat/chat.component';
 import { SocialLoginModule,  AuthServiceConfig, GoogleLoginProvider} from "angular-6-social-login";
 import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material';
 // import { PlayerService } from './player.service';
 // import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 // import {ErrorStateMatcher} from '@angular/material/core';
@@ -72,7 +73,9 @@ return config;
     AppRoutingModule,
     MatCardModule,
     SocialLoginModule,
-    MatListModule
+    MatListModule,
+    MatIconModule,
+    MatButtonModule
   ],
 
 

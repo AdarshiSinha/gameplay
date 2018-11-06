@@ -56,3 +56,43 @@
   display: inline-flex;
   flex-direction: column;
  }
+
+
+ @media(max-width:600px){
+  .mc{
+    width:80%;
+    height: 20rem;
+    /* background-color: aqua; */
+    background-image: url('/src/assets/img/single.jpg');
+    background-size: cover;
+    margin-left:2rem;
+    border-bottom:1rem;
+    font-size: 15px;
+   }
+   .sc{
+    width:80%;
+    height: 5rem;
+    background-color: rgb(166, 255, 0);
+    background-size: cover;
+    margin-left:2rem;
+    border-bottom:1rem;
+    }
+
+    .ques{
+      font-size:20px;
+    }
+
+    #clock{
+
+      width:25rem;
+      background-color: black;
+      font-family: cursive;
+      font-size: 2rem;
+      color:white;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      margin-left: 0%;
+      margin-right: 12rem;
+    }
+ }

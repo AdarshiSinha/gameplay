@@ -64,6 +64,7 @@ namespace asp_back.hubs {
         #region sendQuestions
         public async Task sendQuestions(string ques) {
             await Clients.All.SendAsync("questions", ques);
+           await base.OnConnectedAsync ();
         }
         #endregion
         #region gameOver
@@ -76,7 +77,7 @@ namespace asp_back.hubs {
         public  async Task OnConnectedAsync (string username) {
             
             Console.WriteLine("Client Connected"+ (this.i++));
-            await Groups.AddToGroupAsync (Context.ConnectionId, "SignalR Users");
+            // await Groups.AddToGroupAsync (Context.ConnectionId, "SignalR Users");
             await Clients.All.SendAsync("users",username);
             await base.OnConnectedAsync ();
         }

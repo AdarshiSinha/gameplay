@@ -1,5 +1,5 @@
 .homepage{
-  background-image: url('/src/assets/img/q1.jpg');
+  /* background-image: url('/src/assets/img/full.jpg'); */
    background-position: fixed;
    background-size:100%;
   min-height: -webkit-fill-available;
@@ -13,4 +13,19 @@ button{
 button:hover{
   background:rgb(111, 111, 238);
   color:white;
+}
+
+
+@media(max-width: 600px){
+  .homepage{
+    /* background-image: url('/src/assets/img/q2.jpg'); */
+     background-position: fixed;
+     background-size:100%;
+    min-height: -webkit-fill-available;
+  }
+
+  button{
+    margin-top:2rem;
+    margin-left: 2rem;
+  }
 }

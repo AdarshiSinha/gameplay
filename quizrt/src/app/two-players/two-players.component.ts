@@ -58,7 +58,7 @@ export class TwoPlayersComponent implements OnInit {
 
       this.forignUserScore = score;
      this.forignuser = username;
-      console.log(this.forignuser+" "+this.forignUserScore+" sent from another client")
+      // console.log(this.forignuser+" "+this.forignUserScore+" sent from another client")
 
 
 
@@ -66,7 +66,7 @@ export class TwoPlayersComponent implements OnInit {
 
     connection.on('game',(gameOver:boolean)=>{
     this.gameOver=gameOver;
-      console.log(this.gameOver+ " returned to all");
+      // console.log(this.gameOver+ " returned to all");
   });
 
     connection.on('counter',(counter1:number, question:number)=> {
@@ -78,7 +78,8 @@ export class TwoPlayersComponent implements OnInit {
         {
           // console.log("Game Over");
           this.gameOver=true;
-          console.log("Game Stopped");
+
+          // console.log("Game Stopped");
           connection.send("gameOver",this.gameOver);
         }
       }
@@ -112,9 +113,12 @@ export class TwoPlayersComponent implements OnInit {
     // console.log('called showQuestions');
 
 
-   this.http.get('http://localhost:3000/questions').subscribe((res: any) => {
+   this.http.get('http://172.23.238.164:8080/api/quizrt/question').subscribe((res: any) => {
     this.questions = res;
-    this.currentQuestion = this.questions[this.questionCounter];
+    this.currentQuestion = this.questions[Math.floor((Math.random() * 100) + 1)];
+    console.log(this.username +" called question "+ this.questionCounter);
+
+
     var cq=JSON.stringify(this.currentQuestion);
 
     this.connection1.send("sendQuestions",cq);
@@ -136,7 +140,8 @@ nextQuestion(){
  this.resetTimer();
   this.questionCounter++;
 
- this.currentQuestion = this.questions[this.questionCounter];
+ this.currentQuestion = this.questions[Math.floor((Math.random() * 100) + 1)];
+ console.log(this.username + " called question "+ this.questionCounter);
   var cq=JSON.stringify(this.currentQuestion);
   // if(this.arr.length>1 && this.letsplay===0)
     this.connection1.send("sendQuestions",cq);
@@ -152,8 +157,15 @@ resetTimer(){
   this.connection1.send("StartClock",this.counter,this.questionCounter);
 }
 
-scoreCalculator(){
-  this.score+=this.counter*2;
+scoreCalculator(optionsobject:any){
+  if(optionsobject.isCorrect==true)
+  {
+    console.log("correct answer");
+    this.score+=this.counter*2;
+  }
+  else{
+    this.score+=0;
+  }
   this.connection1.send("sendScore", this.username, this.score);
 }
 

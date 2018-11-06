@@ -7,8 +7,9 @@ namespace asp_back.Models
 {
     public class User
     {        
-        public string id { get; set; }
-        public string name { get; set; }
+        public string user_id { get; set; }
+        public string user_name { get; set; }
+        public string user_image{get; set; }
         public string email { get; set; }
         public string idToken { get; set; }
         public int no_of_games_played {  get; set; }

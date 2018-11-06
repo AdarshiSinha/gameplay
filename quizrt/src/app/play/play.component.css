@@ -8,8 +8,17 @@ margin-left:5rem;
 }
 
 .body{
-background-image: url('/src/assets/img/q1.jpg');
+background-image: url('/src/assets/img/full.jpg');
 background-position: fixed;
 background-size: 100%;
 min-height: -webkit-fill-available;
+}
+
+@media(max-width: 600px){
+  .body{
+    background-image: url('/src/assets/img/q2.jpg');
+    background-position: fixed;
+    background-size: 100%;
+    min-height: -webkit-fill-available;
+    }
 }

@@ -1,42 +1,26 @@
 <button mat-raised-button class="abc" (click)="sleep()" style="background-color:black; color:white;" >
    I want to play
 </button>
-<<<<<<< HEAD
+
 <button mat-raised-button  *ngIf="users_found" color="primary" (click)="showQuestions()">Let's Play</button>
-<!-- <button mat-raised-button color="primary" (click)="wait()">Wait For 1 min.</button> -->
-=======
-<button mat-raised-button  *ngIf="" color="primary" (click)="showQuestions()">Let's Play</button>
->>>>>>> 5816c53641dbd7c4fc97f7749ec806a5074288c8
+
 
 <div class="abc" *ngIf="!gameOver">
       <mat-card class="mc">
-         <h2 style="color:white">{{currentQuestion.problemStatement}}</h2><br>
-         <mat-radio-group class="radio-group" (click)="scoreCalculator()">
-            <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.options" [value]="o.id" style="color:white">
-                {{o.content}}<br>
+         <h2 style="color:white">{{currentQuestion.questionGiven}}</h2><br>
+         <mat-radio-group class="radio-group">
+            <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.questionOptions" [value]="o.optionsId" style="color:white" (click)="scoreCalculator(o)">
+                {{o.optionGiven}}<br>
              </mat-radio-button>
          </mat-radio-group>
          <br>
       </mat-card>
 
-<<<<<<< HEAD
-        <mat-card class="sc">
-            <mat-card id="divMessages1" class="messages" style="color:black">
-              {{username}}: <br> {{ score }}
-            </mat-card>
-            <mat-card >
-              {{forignuser}}:
-              <div id="divMessages2" class="messages" style="color:black">  {{ forignUserScore }}</div>
-=======
-      <mat-card class="sc">
-          <mat-card id="divMessages1" class="messages" style="color:black">
-              {{username}}:  {{ score }}
-           </mat-card>
-           <mat-card id="divMessages2" class="messages" style="color:black">
-              {{forignuser}}:  {{ forignUserScore }}
->>>>>>> 5816c53641dbd7c4fc97f7749ec806a5074288c8
-            </mat-card>
-      </mat-card>
+      <mat-grid-list cols="2" rowHeight="5:1">
+        <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
+        <mat-grid-tile>{{forignuser}}:<br>{{ forignUserScore }}</mat-grid-tile>
+      </mat-grid-list>
+
 </div>
 
 <div id="clock" *ngIf="!gameOver">
@@ -45,4 +29,5 @@
 
 <mat-card *ngIf="gameOver && score>forignUserScore">You Win</mat-card>
 <mat-card *ngIf="gameOver && score<forignUserScore">Opponent Wins</mat-card>
+<mat-card *ngIf="gameOver && score===forignUserScore">It's a Draw</mat-card>
 

@@ -18,7 +18,8 @@ export class SinglePlayerComponent implements OnInit {
   shouldDisplayQuestions = false;
   currentQuestion : any;
   start:boolean=false;
-
+  option =[];
+  option_object:any;
 //  quesCount=0;
 
   gameOver = false;
@@ -32,19 +33,20 @@ export class SinglePlayerComponent implements OnInit {
   {
     this.start=true;
     console.log('called showQuestions');
-    this.http.get('http://localhost:3000/questions').subscribe((res: any) => {
+    this.http.get('http://172.23.238.164:8080/api/quizrt/question').subscribe((res: any) => {
     this.questions = res;
 
     this.shouldDisplayQuestions = true;
+    this.currentQuestion = this.questions[Math.floor((Math.random() * 100) + 1)];
     this.gameClock();
-    console.log(this.questions[0].options);
+    // console.log(this.questions[0].options);
 
     });
   }
 
   gameClock() {
     const intervalMain = setInterval(() => {
-      this.currentQuestion = this.questions[this.questionCounter];
+      // this.currentQuestion = this.questions[Math.floor((Math.random() * 100) + 1)];
     this.counter--;
     if (this.counter <= 0) {
       this.nextQuestion();}
@@ -61,14 +63,27 @@ export class SinglePlayerComponent implements OnInit {
 nextQuestion(){
   this.resetTimer();
   this.questionCounter++;
-  this.currentQuestion = this.questions[this.questionCounter];
+  this.currentQuestion = this.questions[Math.floor((Math.random() * 100) + 1)];
 }
 
 resetTimer(){
   this.i++;
   //this.quesCount++;
-  this.score+=this.counter*2;
+  // this.score+=this.counter*2;
+
   this.counter=10;
 }
 
+scoreCalculator(optionsobject: any){
+    if(optionsobject.isCorrect==true)
+  {
+    console.log("correct answer");
+    this.score+=this.counter*2;
+  }
+  else{
+    this.score+=0;
+  }
+ //console.log(option.isCorrect);
+ this.nextQuestion();
+ }
 }

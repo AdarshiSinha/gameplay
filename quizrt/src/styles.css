@@ -3,18 +3,16 @@
 
 
 body{
-  /* background-image: url('/src/assets/img/q1.jpg'); */
+  background-image: url('/src/assets/img/full.jpg');
   background-color: black;
   background-position: fixed;
   background-size:cover;
 }
-/* input.ng-invalid.ng-dirty{
-  border-bottom-color: red !important;
-  box-shadow: 0 1px 0 0 red !important;
-} */
-/* @media only screen and (max-width: 600px){
+ @media(max-width: 600px){
   body{
-    background-image: url('/src/assets/img/quiz.jpg');
-
-} */
-/*  */
+    background-image: url('/src/assets/img/q2.jpg');
+    background-color: black;
+    background-position: fixed;
+    background-size:cover;
+  }
+ }
