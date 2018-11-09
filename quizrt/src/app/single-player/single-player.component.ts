@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+// import { Howl} from 'howler';
 @Component({
   selector: 'app-single-player',
   templateUrl: './single-player.component.html',
@@ -31,13 +32,15 @@ export class SinglePlayerComponent implements OnInit {
 
   showQuestions()
   {
+    // var mySound=new Howl({src:["/src/assets/music/bg_music.mp3"]});
+    // mySound.play();
     this.start=true;
-    console.log('called showQuestions');
+    // console.log('called showQuestions');
     this.http.get('http://172.23.238.164:8080/api/quizrt/question').subscribe((res: any) => {
     this.questions = res;
 
     this.shouldDisplayQuestions = true;
-    this.currentQuestion = this.questions[Math.floor((Math.random() * 100) + 1)];
+    this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
     this.gameClock();
     // console.log(this.questions[0].options);
 
@@ -63,7 +66,7 @@ export class SinglePlayerComponent implements OnInit {
 nextQuestion(){
   this.resetTimer();
   this.questionCounter++;
-  this.currentQuestion = this.questions[Math.floor((Math.random() * 100) + 1)];
+  this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
 }
 
 resetTimer(){
@@ -77,7 +80,7 @@ resetTimer(){
 scoreCalculator(optionsobject: any){
     if(optionsobject.isCorrect==true)
   {
-    console.log("correct answer");
+    // console.log("correct answer");
     this.score+=this.counter*2;
   }
   else{

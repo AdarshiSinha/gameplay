@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
+using asp_back.Models;
 
 namespace asp_back {
     public class Startup {
@@ -31,6 +33,10 @@ namespace asp_back {
                     .AllowAnyOrigin();
             }));
             services.AddSignalR ();
+
+            // Kuldeep | Added For Databasae Creation String
+            var connString = Environment.GetEnvironmentVariable("SQLSERVER_HOST") ?? "Server=localhost\\SQLEXPRESS;Database=QuizGamePlayDB;Trusted_Connection=True;";
+            services.AddDbContext<efmodel>(options => options.UseSqlServer(connString)); // End Here
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +50,7 @@ namespace asp_back {
             app.UseSignalR (routes => {
                 routes.MapHub<ChatHub> ("/chathub");
             });
-            app.UseHttpsRedirection ();
+            // app.UseHttpsRedirection (); // To Avoid Redirection On Deployment
             app.UseMvc ();
         }
     }
