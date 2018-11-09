@@ -15,7 +15,7 @@
   width:80%;
   height: 30rem;
   background-color: aqua;
-  background-image: url('/src/assets/img/single.jpg');
+  background-image: url('/src/assets/img/ques.jpg');
   background-size: cover;
   margin-left:10rem;
   border-bottom:5rem;
@@ -37,15 +37,18 @@
   background-size: cover;
   margin-left:10rem;
   border-bottom:5rem;
-  background-image: url('/src/assets/img/single.jpg');
+  background-image: url('/src/assets/img/ques.jpg');
   }
 
- .gameover{
-  background-image: url('/src/assets/img/q8.jpg');
- }
+ /* .gameover{
+  /* background-image: url('/src/assets/img/q8.jpg'); */
+
 
   .cc{
-    background-size: cover;
+    width:30%;
+    height:30%;
+    margin-top:13rem;
+    margin-left:15rem;
     }
 
  .btn{
@@ -56,6 +59,18 @@
   display: inline-flex;
   flex-direction: column;
  }
+
+ button{
+  margin-top:3rem;
+  margin-left: 18rem;
+  /* width:5rem; */
+  height:3rem;
+}
+
+button:hover{
+  background:rgb(238, 122, 87);
+  color:white;
+}
 
 
  @media(max-width:600px){

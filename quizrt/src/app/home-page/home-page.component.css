@@ -7,11 +7,13 @@
 
 button{
   margin-top:10rem;
-  margin-left: 10rem;
+  margin-left: 20rem;
+  /* width:5rem; */
+  height:3rem;
 }
 
 button:hover{
-  background:rgb(111, 111, 238);
+  background:rgb(238, 122, 87);
   color:white;
 }
 
