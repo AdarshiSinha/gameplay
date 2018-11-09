@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace asp_back.Models
 {
     public class User
-    {        
+    {
+        [Key]
         public string user_id { get; set; }
         public string user_name { get; set; }
         public string user_image{get; set; }
