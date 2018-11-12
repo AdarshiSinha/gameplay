@@ -17,6 +17,7 @@ ENV PATH /usr/src/gameplayapp/node_modules/.bin:$PATH
 COPY package.json /usr/src/gameplayapp/package.json
 RUN npm install
 RUN npm install -g @angular/cli@1.7.1
+RUN npm install @aspnet/signalr
 
 # add gameplayapp
 COPY . /usr/src/gameplayapp
