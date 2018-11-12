@@ -22,7 +22,7 @@ export class FourPlayersComponent implements OnInit {
   gameOver:boolean=false;
   start:boolean=false;
   shouldDisplayQuestions:boolean=false;
-
+  max1:number=0;
   constructor(private http: HttpClient ) { }
 
   ngOnInit() {
@@ -72,6 +72,7 @@ export class FourPlayersComponent implements OnInit {
           {
             // console.log("Game Over");
             this.gameOver=true;
+            this.max1= Math.max(this.score1[0],this.score1[1],this.score,this.score1[2]);
           }
         }
         }

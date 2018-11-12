@@ -36,7 +36,7 @@ namespace asp_back.hubs {
             await Clients.All.SendAsync("counter",i);
             Thread.Sleep(1000);
             i--;
-            if(questionCounter>=7)
+            if(questionCounter>7)
             {
                 break;
             }
@@ -62,30 +62,31 @@ namespace asp_back.hubs {
         }
         #endregion
         #region sendQuestions
-        public async Task sendQuestions(string ques) {
-            await Clients.All.SendAsync("questions", ques);
-           await base.OnConnectedAsync ();
+        public async Task sendQuestions(string ques, int qc) {
+            await Clients.Others.SendAsync("questions", ques,qc);
+        //    await base.OnConnectedAsync ();
         }
         #endregion
         #region gameOver
         public async Task gameOver(bool game ){
-            Console.WriteLine("Reached game over");
+            // Console.WriteLine("Reached game over");
             await Clients.All.SendAsync("game",game);
         }
         #endregion
         #region OnConnectedAsync
         public  async Task OnConnectedAsync (string username) {
             
-            Console.WriteLine("Client Connected"+ (this.i++));
+            // Console.WriteLine("Client Connected"+ (this.i++));
             // await Groups.AddToGroupAsync (Context.ConnectionId, "SignalR Users");
             await Clients.All.SendAsync("users",username);
             await base.OnConnectedAsync ();
         }
         #endregion
         #region OnDisconnectedAsync
-        public override async Task OnDisconnectedAsync (Exception exception) {
-            await Groups.RemoveFromGroupAsync (Context.ConnectionId, "SignalR Users");
-            await base.OnDisconnectedAsync (exception);
+        public async Task OnDisconnectedAsync (string username) {
+            // await Groups.RemoveFromGroupAsync (Context.ConnectionId, "SignalR Users");
+            await Clients.All.SendAsync("usersDisconnect",username); 
+            // await base.OnDisconnectedAsync (exception);
         }
         #endregion
     }

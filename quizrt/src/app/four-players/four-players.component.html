@@ -2,7 +2,7 @@
   I want to play
  </button>
 
-<button mat-raised-button *ngIf="users_found"  color="primary" (click)="showQuestions()">Let's Play</button>
+<button mat-raised-button *ngIf="users_found && !start"  color="primary" (click)="showQuestions()">Let's Play</button>
 <div class="abc" *ngIf="counter>=1 && !gameOver">
 
   <mat-card class="mc">
@@ -38,6 +38,8 @@
   </mat-grid-list>
 
 </div>
+
+<mat-card *ngIf="gameOver">Your Score: {{score}}<br>Highest Score: {{max1}}</mat-card>
 
 <div id="clock" *ngIf="!gameOver">
 {{counter}}

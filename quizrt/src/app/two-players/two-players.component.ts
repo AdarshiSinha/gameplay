@@ -16,7 +16,7 @@ export class TwoPlayersComponent implements OnInit {
   i:number=0;
   name: string;
   score:number=0;
-  questionCounter = 0;
+  questionCounter = 1;
   shouldDisplayQuestions = false;
   currentQuestion : any;
   users_found:boolean=false;
@@ -69,12 +69,21 @@ export class TwoPlayersComponent implements OnInit {
       // console.log(this.gameOver+ " returned to all");
   });
 
+  connection.on("usersDisconnect",(username1:string)=> {
+
+    alert(username1+" decides to quit.Finishing game...");
+    this.gameOver=true;
+
+  });
+
     connection.on('counter',(counter1:number, question:number)=> {
+      // console.log(this.username+" is triggereing "+counter1);
       this.counter=counter1;
       if (this.counter <= 0) {
 
-        if(this.users_found===true){this.nextQuestion();
-        if(this.questionCounter>=7)
+        if(this.users_found===true){
+          this.nextQuestion();
+        if(this.questionCounter>7)
         {
           // console.log("Game Over");
           this.gameOver=true;
@@ -86,7 +95,8 @@ export class TwoPlayersComponent implements OnInit {
       }
     });
 
-    connection.on('questions',(question:string)=>{
+    connection.on('questions',(question:string,qc:number)=>{
+      // console.log(this.username+" gets question "+ qc);
     this.currentQuestion=JSON.parse(question);
 
     }
@@ -106,6 +116,10 @@ export class TwoPlayersComponent implements OnInit {
 
   }
 
+  endGame(){
+    this.connection1.send("OnDisconnectedAsync",this.username);
+    // this.gameOver=true;
+  }
   showQuestions()
   {
 
@@ -116,12 +130,12 @@ export class TwoPlayersComponent implements OnInit {
    this.http.get('http://172.23.238.164:8080/api/quizrt/question').subscribe((res: any) => {
     this.questions = res;
     this.currentQuestion = this.questions[Math.floor((Math.random() * 100) + 1)];
-    console.log(this.username +" called question "+ this.questionCounter);
+    // console.log(this.username +" called question "+ this.questionCounter);
 
 
     var cq=JSON.stringify(this.currentQuestion);
 
-    this.connection1.send("sendQuestions",cq);
+    this.connection1.send("sendQuestions",cq,this.questionCounter);
     this.shouldDisplayQuestions = true;
     this.gameClock();
 
@@ -137,15 +151,15 @@ export class TwoPlayersComponent implements OnInit {
 }
 
 nextQuestion(){
- this.resetTimer();
+
   this.questionCounter++;
 
  this.currentQuestion = this.questions[Math.floor((Math.random() * 100) + 1)];
- console.log(this.username + " called question "+ this.questionCounter);
+//  console.log(this.username + " called question "+ this.questionCounter);
   var cq=JSON.stringify(this.currentQuestion);
   // if(this.arr.length>1 && this.letsplay===0)
-    this.connection1.send("sendQuestions",cq);
-
+    this.connection1.send("sendQuestions",cq,this.questionCounter);
+    this.resetTimer();
  }
 
 
@@ -160,7 +174,7 @@ resetTimer(){
 scoreCalculator(optionsobject:any){
   if(optionsobject.isCorrect==true)
   {
-    console.log("correct answer");
+    // console.log("correct answer");
     this.score+=this.counter*2;
   }
   else{

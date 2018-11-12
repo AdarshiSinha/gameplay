@@ -23,7 +23,7 @@ export class ThreePlayersComponent implements OnInit {
   gameOver:boolean=false;
   start:boolean=false;
   shouldDisplayQuestions:boolean=false;
-
+  max1:number=0;
   constructor(private http: HttpClient ) { }
 
   ngOnInit() {
@@ -68,7 +68,7 @@ export class ThreePlayersComponent implements OnInit {
           {
             // console.log("Game Over");
             this.gameOver=true;
-            console.log(Math.max(this.score1[0],this.score1[1],this.score));
+            this.max1= Math.max(this.score1[0],this.score1[1],this.score);
           }
         }
         }

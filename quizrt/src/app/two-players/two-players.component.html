@@ -1,4 +1,4 @@
-<button mat-raised-button class="abc" (click)="sleep()" style="background-color:black; color:white;" >
+<button mat-raised-button class="abc" *ngIf="!start" (click)="sleep()" style="background-color:black; color:white;" >
    I want to play
 </button>
 
@@ -14,6 +14,7 @@
              </mat-radio-button>
          </mat-radio-group>
          <br>
+         <button mat-raised-button (click)="endGame()">End Game</button>
       </mat-card>
 
       <mat-grid-list cols="2" rowHeight="5:1">
@@ -27,7 +28,13 @@
   {{counter}}
 </div>
 
-<mat-card *ngIf="gameOver && score>forignUserScore">You Win</mat-card>
-<mat-card *ngIf="gameOver && score<forignUserScore">Opponent Wins</mat-card>
-<mat-card *ngIf="gameOver && score===forignUserScore">It's a Draw</mat-card>
+<mat-card *ngIf="gameOver && score>forignUserScore">You Win<br>
+    <button mat-raised-button class="btn"  color="primary" [routerLink]="['/play']">Go Back</button>
+</mat-card>
+<mat-card *ngIf="gameOver && score<forignUserScore">Opponent Wins<br>
+    <button mat-raised-button class="btn"  color="primary" [routerLink]="['/play']">Go Back</button>
+</mat-card>
+<mat-card *ngIf="gameOver && score===forignUserScore">It's a Draw<br>
+    <button mat-raised-button class="btn"  color="primary" [routerLink]="['/play']">Go Back</button>
+</mat-card>
 

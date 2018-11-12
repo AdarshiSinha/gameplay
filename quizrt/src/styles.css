@@ -8,9 +8,15 @@ body{
   background-position: fixed;
   background-size:cover;
 }
+
+.b{
+  /* background-image: url('/src/assets/img/trans_star.jpg'); */
+  /* background-position:fixed; */
+  /* background-size: cover; */
+}
  @media(max-width: 600px){
   body{
-    background-image: url('/src/assets/img/q2.jpg');
+    background-image: url('/src/assets/img/3.jpg');
     background-color: black;
     background-position: fixed;
     background-size:cover;
