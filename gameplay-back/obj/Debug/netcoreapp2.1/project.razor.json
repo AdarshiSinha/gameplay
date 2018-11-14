@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "ProjectFilePath": "c:\\Users\\Adarshi\\Documents\\GitHub\\gameplay-back\\gameplay-back.csproj",
+=======
+  "ProjectFilePath": "c:\\Users\\Administrator\\Desktop\\gameplay\\gameplay-back\\asp-back.csproj",
+>>>>>>> 3c8d27615d506af049d7bc7f88deca78e4fee50f
   "TargetFramework": "netcoreapp2.1",
   "TagHelpers": [],
   "Configuration": {

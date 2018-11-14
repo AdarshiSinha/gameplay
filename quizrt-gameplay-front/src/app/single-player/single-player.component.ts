@@ -24,12 +24,24 @@ export class SinglePlayerComponent implements OnInit {
   showQuestions()
   {
     this.start=true;
+<<<<<<< HEAD
     this.http.get('http://172.23.238.164:8080/api/quizrt/question').subscribe((res:any) => {
     this.questions = res;
     this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
     this.gameClock();
 
     });
+=======
+    // console.log('called showQuestions');
+    this.http.get('http://172.23.238.164:8080/api/quizrt/question').subscribe(
+      (res: any) => {
+        this.questions = res;
+    // this.shouldDisplayQuestions = true;
+    this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
+    this.gameClock();
+    // console.log(this.questions[0].options);
+           });
+>>>>>>> 3c8d27615d506af049d7bc7f88deca78e4fee50f
   }
 
   gameClock() {
@@ -47,14 +59,20 @@ export class SinglePlayerComponent implements OnInit {
 }
 
 nextQuestion(){
-
   this.questionCounter++;
   this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
   this.resetTimer();
 }
 
 resetTimer(){
+<<<<<<< HEAD
 this.counter=10;
+=======
+  this.i++;
+  //this.quesCount++;
+  // this.score+=this.counter*2;
+  this.counter=10;
+>>>>>>> 3c8d27615d506af049d7bc7f88deca78e4fee50f
 }
 
 scoreCalculator(optionsobject: any){

@@ -16,6 +16,7 @@ export interface DialogData {
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
+
 export class HomePageComponent {
 name: string;
 country:string;
@@ -27,7 +28,6 @@ public socialSignIn(socialPlatform: string){
   if(socialPlatform== "google"){
     socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
   }
-
   this.socialAuthService.signIn(socialPlatformProvider).then(
     (userData)=> {console.log(socialPlatform +" sign in data: ", userData);}
   );

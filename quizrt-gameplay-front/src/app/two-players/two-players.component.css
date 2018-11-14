@@ -11,7 +11,7 @@
   margin-right: 40%;
 }
 
-.que{
+.questions{
   width:80%;
   height: 30rem;
   background-color: aqua;
@@ -19,6 +19,7 @@
   background-size: cover;
   margin-left:10rem;
   border-bottom:5rem;
+  color: white;
  }
 
 /* .abc
@@ -50,7 +51,7 @@ font-size: 20px;
 
 
 @media(max-width:600px){
-  .que{
+  .questions{
     width:80%;
     height: 20rem;
     /* background-color: aqua; */
@@ -59,6 +60,7 @@ font-size: 20px;
     margin-left:2rem;
     border-bottom:1rem;
     font-size: 15px;
+    color: white;
    }
 
     mat-grid-list{

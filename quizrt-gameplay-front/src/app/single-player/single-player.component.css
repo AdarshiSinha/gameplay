@@ -11,7 +11,7 @@
   margin-right: 40%;
  }
 
- .que{
+.quiz{
   width:80%;
   height: 30rem;
   background-color: aqua;
@@ -21,30 +21,37 @@
   border-bottom:5rem;
  }
 
- .score{
+.score{
  width:80%;
  height: 10rem;
  background-color: rgb(166, 255, 0);
  background-size: cover;
  margin-left:10rem;
  border-bottom:5rem;
+ color: black;
  }
 
 
-  .final{
-    width:30%;
-    height:30%;
-    margin-top:13rem;
-    margin-left:15rem;
-    }
-
- .btn{
-  margin-left: 10%;
+.final{
+ width:30%;
+ height:30%;
+ margin-top:13rem;
+ margin-left:15rem;
  }
 
- .radio-group{
-  display: inline-flex;
-  flex-direction: column;
+#finalScore{
+   color: blue
+}
+.goBack{
+ margin-left: 10%;
+ color: white
+  
+ }
+
+.options{
+ display: inline-flex;
+ flex-direction: column;
+ color:white;
  }
 
  button{
@@ -59,13 +66,18 @@ button:hover{
   color:white;
 }
 
+<<<<<<< HEAD
 #fscore{
   color:blue;
+=======
+.question{
+  color: white;
+>>>>>>> 3c8d27615d506af049d7bc7f88deca78e4fee50f
 }
 
 
  @media(max-width:600px){
-  .que{
+  .quiz{
     width:80%;
     height: 20rem;
     /* background-color: aqua; */
@@ -86,13 +98,16 @@ button:hover{
 
     }
 
-    .ques{
+    .question{
       font-size:20px;
+<<<<<<< HEAD
       color:white;
+=======
+      color: white;
+>>>>>>> 3c8d27615d506af049d7bc7f88deca78e4fee50f
     }
 
     #clock{
-
       width:25rem;
       background-color: black;
       font-family: cursive;
@@ -118,11 +133,14 @@ button:hover{
       width: 80%;
       height: 90%;
     }
-  .btn{
+
+  .goBack{
     margin-left: 33%
   }
+
   img{
     margin-left: 25%
   }
+
  }
 
