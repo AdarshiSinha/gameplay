@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using System;
-namespace asp_back.Models
+namespace gameplay_back.Models
 {
     public class efmodel: DbContext
     {

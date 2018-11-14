@@ -17,8 +17,7 @@ button:hover{
   color:white;
 }
 
-
-@media(max-width: 600px){
+@media(max-width: 600px) {
   .homepage{
     /* background-image: url('/src/assets/img/3.jpg'); */
      background-position: fixed;
@@ -30,6 +29,7 @@ button:hover{
     margin-top:1rem;
     margin-left: 5.5rem;
   }
+
   .image{
     background-image: url('/src/assets/img/logo_1.png');
     width: 188px;
@@ -37,7 +37,8 @@ button:hover{
     margin-top:2rem;
     margin-left: 4.5rem;
   }
-  .b1{
+
+  .login{
     margin-left: 7.5rem;
   }
 }

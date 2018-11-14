@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
-using asp_back.Models;
+using gameplay_back.Models;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Threading;
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-namespace asp_back.hubs {
+namespace gameplay_back.hubs {
     /// <summary>
     /// This hub receives request from the front-end and responds to the specified client 
     /// </summary>

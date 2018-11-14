@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using asp_back.hubs;
+using gameplay_back.hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,9 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
-using asp_back.Models;
+using gameplay_back.Models;
 
-namespace asp_back {
+namespace gameplay_back {
     public class Startup {
         public Startup (IConfiguration configuration) {
             Configuration = configuration;

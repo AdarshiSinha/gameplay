@@ -22,17 +22,17 @@
   },
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "asp-back/1.0.0": {
+      "gameplay-back/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.All": "2.1.1",
           "Microsoft.AspNetCore.Razor.Design": "2.1.2",
           "Microsoft.NETCore.App": "2.1.0"
         },
         "runtime": {
-          "asp-back.dll": {}
+          "gameplay-back.dll": {}
         },
         "compile": {
-          "asp-back.dll": {}
+          "gameplay-back.dll": {}
         }
       },
       "Microsoft.AspNetCore.Razor.Design/2.1.2": {},
@@ -3702,7 +3702,7 @@
     }
   },
   "libraries": {
-    "asp-back/1.0.0": {
+    "gameplay-back/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

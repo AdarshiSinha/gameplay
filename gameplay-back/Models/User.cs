@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace asp_back.Models
+namespace gameplay_back.Models
 {
     public class User
     {

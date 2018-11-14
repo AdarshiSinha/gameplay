@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace asp_back.Controllers
+namespace gameplay_back.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

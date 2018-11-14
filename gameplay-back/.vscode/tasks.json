@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/asp-back.csproj"
+                "${workspaceFolder}/gameplay-back.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

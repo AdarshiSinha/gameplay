@@ -16,7 +16,7 @@ services:
       - ".:/quizrt/usr/src/gameplayapp"
       - /quizrt/usr/src/gameplayapp/node_modules
   gameplayweb:
-    build: ./asp-back
+    build: ./gameplay-back
     environment:
       SQLSERVER_HOST: Server=gameplaydb;Database=Quiztest3DBLinux;User=sa;Password=Your_password123
     links:

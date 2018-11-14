@@ -59,6 +59,10 @@ button:hover{
   color:white;
 }
 
+#fscore{
+  color:blue;
+}
+
 
  @media(max-width:600px){
   .que{
@@ -78,10 +82,13 @@ button:hover{
     background-size: cover;
     margin-left:2rem;
     border-bottom:1rem;
+    color:black;
+
     }
 
     .ques{
       font-size:20px;
+      color:white;
     }
 
     #clock{
