@@ -6,8 +6,8 @@
 
 
 <div *ngIf="!gameOver">
-      <mat-card class="que">
-         <h2 style="color:white">{{currentQuestion.questionGiven}}</h2>
+      <mat-card class="questions">
+         <h2>{{currentQuestion.questionGiven}}</h2>
          <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button>
          <br>
          <mat-radio-group class="radio-group" [disabled]="isDisabled">
@@ -31,13 +31,16 @@
 </div>
 
 <mat-card *ngIf="gameOver && score>forignUserScore">You Win<br>
-    <button mat-raised-button class="btn"  color="primary" [routerLink]="['/play']">Go Back</button>
+    <button mat-raised-button color="primary" [routerLink]="['/play']">
+        Go Back</button>
 </mat-card>
 <mat-card *ngIf="gameOver && score<forignUserScore">Opponent Wins<br>
-    <button mat-raised-button class="btn"  color="primary" [routerLink]="['/play']">Go Back</button>
+    <button mat-raised-button  color="primary" [routerLink]="['/play']">
+        Go Back</button>
 </mat-card>
 <mat-card *ngIf="gameOver && score===forignUserScore">It's a Draw<br>
-    <button mat-raised-button class="btn"  color="primary" [routerLink]="['/play']">Go Back</button>
+    <button mat-raised-button  color="primary" [routerLink]="['/play']">
+        Go Back</button>
 </mat-card>
 <!-- <script> -->
 <!-- function disableButton(){ -->

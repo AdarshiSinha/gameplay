@@ -37,15 +37,14 @@ export class SinglePlayerComponent implements OnInit {
     // mySound.play();
     this.start=true;
     // console.log('called showQuestions');
-    this.http.get('http://172.23.238.164:8080/api/quizrt/question').subscribe((res: any) => {
-    this.questions = res;
-
+    this.http.get('http://172.23.238.164:8080/api/quizrt/question').subscribe(
+      (res: any) => {
+        this.questions = res;
     // this.shouldDisplayQuestions = true;
     this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
     this.gameClock();
     // console.log(this.questions[0].options);
-
-    });
+           });
   }
 
   gameClock() {
@@ -65,7 +64,6 @@ export class SinglePlayerComponent implements OnInit {
 }
 
 nextQuestion(){
-
   this.questionCounter++;
   this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
   this.resetTimer();
@@ -75,7 +73,6 @@ resetTimer(){
   this.i++;
   //this.quesCount++;
   // this.score+=this.counter*2;
-
   this.counter=10;
 }
 
