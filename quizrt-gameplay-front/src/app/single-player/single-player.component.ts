@@ -23,7 +23,8 @@ export class SinglePlayerComponent implements OnInit {
   ngOnInit() {
 
     this.connection = new signalR.HubConnectionBuilder()
-    .withUrl('https://localhost:5001/chathub')
+    .withUrl('http://172.23.238.164:8082/chathub
+             ')
     .build();
 
     this.connection.start()
