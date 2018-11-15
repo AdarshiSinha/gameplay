@@ -1,45 +1,27 @@
 <button class="play" mat-raised-button *ngIf="!start" (click)="showQuestions()">
   Let's Play</button>
 <div *ngIf="counter>=1 && !gameOver && start">
-<<<<<<< HEAD
-     <mat-card class="que">
-       <h2 class="ques" >{{currentQuestion?.questionGiven}}</h2><br>
-       <mat-radio-group class="radio-group">
-           <mat-radio-button class="radio-button" [class.disabled]="isClickedOnce" *ngFor="let option of currentQuestion?.questionOptions" [value]="option.optionsId" style="color:white" (click)="scoreCalculator(o); isClickedOnce=true" >
-             {{option.optionGiven}}<br>
-=======
      <mat-card class="quiz">
        <h2 class="question"> {{currentQuestion?.questionGiven}} </h2><br>
        <mat-radio-group class="options">
-           <mat-radio-button [class.disabled]="isClickedOnce" 
-           *ngFor="let option of currentQuestion?.questionOptions" 
-           [value]="option.optionsId" (click)="scoreCalculator(o); 
-           isClickedOnce=true" >
+           <mat-radio-button
+           *ngFor="let option of currentQuestion?.questionOptions"
+           [value]="option.optionsId" (click)="scoreCalculator(option)">
            {{option.optionGiven}}<br>
->>>>>>> 3c8d27615d506af049d7bc7f88deca78e4fee50f
           </mat-radio-button>
           <br>
        </mat-radio-group>
      </mat-card>
 
-<<<<<<< HEAD
-     <mat-card class="score" >
-=======
      <mat-card class="score">
->>>>>>> 3c8d27615d506af049d7bc7f88deca78e4fee50f
         <h3> Your Score is {{score}} </h3>
      </mat-card>
 </div>
 
 <div *ngIf="gameOver" class="gameover">
   <mat-card class="final">
-<<<<<<< HEAD
-    <mat-card-title id="fscore" >Your Final Score is {{score}} </mat-card-title>
-       <button mat-raised-button class="btn"  color="primary" [routerLink]="['/play']">Go Back</button>
-=======
     <mat-card-title id="finalScore">Your Final Score is {{score}} </mat-card-title>
-       <button mat-raised-button class="goBack" [routerLink]="['/play']">Go Back</button>
->>>>>>> 3c8d27615d506af049d7bc7f88deca78e4fee50f
+       <button mat-raised-button class="goBack" color="primary" [routerLink]="['/play']">Go Back</button>
        <br><br>
        <img mat-card-lg-image src="/src/assets/img/q8.jpg">
     </mat-card>

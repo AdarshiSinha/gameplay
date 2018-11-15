@@ -13577,11 +13577,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Adarshi\\Documents\\GitHub\\gameplay-back\\gameplay-back.csproj",
+      "projectUniqueName": "c:\\Users\\Adarshi\\Documents\\GitHub\\gameplay\\gameplay-back\\gameplay-back.csproj",
       "projectName": "gameplay-back",
-      "projectPath": "C:\\Users\\Adarshi\\Documents\\GitHub\\gameplay-back\\gameplay-back.csproj",
+      "projectPath": "c:\\Users\\Adarshi\\Documents\\GitHub\\gameplay\\gameplay-back\\gameplay-back.csproj",
       "packagesPath": "C:\\Users\\Adarshi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Adarshi\\Documents\\GitHub\\gameplay-back\\obj\\",
+      "outputPath": "c:\\Users\\Adarshi\\Documents\\GitHub\\gameplay\\gameplay-back\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

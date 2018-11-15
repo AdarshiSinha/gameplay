@@ -10,12 +10,14 @@ using System.Threading;
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net.Http;
 namespace gameplay_back.hubs {
     /// <summary>
     /// This hub receives request from the front-end and responds to the specified client 
     /// </summary>
     public class ChatHub : Hub {
         // int i=0;
+        HttpClient http= new HttpClient();
         
         #region Newmessage 
         public async Task NewMessage(string username, string message)
@@ -55,18 +57,34 @@ namespace gameplay_back.hubs {
             return Clients.Caller.SendAsync ("ReceiveMessage", message);
         }
         #endregion
-        #region SendMessageToGroups
-        public Task SendMessageToGroups (string message) {
-            List<string> groups = new List<string> () { "SignalR Users" };
-            return Clients.Groups (groups).SendAsync ("ReceiveMessage", message);
-        }
-        #endregion
+        // #region SendMessageToGroups
+        // public Task SendMessageToGroups (string message) {
+        //     List<string> groups = new List<string> () { "SignalR Users" };
+        //     return Clients.Groups (groups).SendAsync ("ReceiveMessage", message);
+        // }
+        // #endregion
         #region sendQuestions
-        public async Task SendQuestions(string ques, int qc) {
-            await Clients.Others.SendAsync("questions", ques,qc);
-        //    await base.OnConnectedAsync ();
+        public async Task SendQuestions() {
+            HttpResponseMessage response = await this.http.GetAsync("http://172.23.238.164:8080/api/quizrt/question");
+            HttpContent content = response.Content;
+            string data = await content.ReadAsStringAsync();
+            JArray json = JArray.Parse(data);
+            Random random = new Random();
+            await Clients.Caller.SendAsync("questions", json[random.Next(1,json.Count)]);
         }
         #endregion
+
+        public async Task SendQuestionsToMulti(string groupname) {
+            HttpResponseMessage response = await this.http.GetAsync("http://172.23.238.164:8080/api/quizrt/question");
+            Console.WriteLine("came here");
+             HttpContent content = response.Content;
+            string data = await content.ReadAsStringAsync();
+            JArray json = JArray.Parse(data);
+            Random random = new Random();
+            await Clients.Groups(groupname).SendAsync("questionsToMulti", json[random.Next(1,json.Count)]);
+        }
+
+
         #region gameOver
         public async Task GameOver(bool game) {
             // Console.WriteLine("Reached game over");
@@ -76,8 +94,6 @@ namespace gameplay_back.hubs {
         #region OnConnectedAsync
         public  async Task OnConnectedAsync (string username) {
             
-            // Console.WriteLine("Client Connected"+ (this.i++));
-            // await Groups.AddToGroupAsync (Context.ConnectionId, "SignalR Users");
             await Clients.All.SendAsync("users", username);
             await base.OnConnectedAsync ();
         }
@@ -89,5 +105,13 @@ namespace gameplay_back.hubs {
             // await base.OnDisconnectedAsync (exception);
         }
         #endregion
+
+        public async Task AddToGroup(string userName, string groupName) {
+            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+            // Random group= new Random();
+            // var groupName=group.Next(1,50).ToString();
+            Console.WriteLine();
+            await Clients.Group(groupName).SendAsync("Send", userName, groupName);
+        }
     }
 }

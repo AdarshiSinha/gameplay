@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as signalR from '@aspnet/signalr';
 // import { Howl} from 'howler';
 @Component({
   selector: 'app-single-player',
@@ -15,33 +16,38 @@ export class SinglePlayerComponent implements OnInit {
   start:boolean=false;
   isClickedOnce:boolean=false;
   gameOver = false;
+  connection:any;
 
   constructor(private http: HttpClient) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.connection = new signalR.HubConnectionBuilder()
+    .withUrl('https://localhost:5001/chathub')
+    .build();
+
+    this.connection.start()
+        .then(() => console.log('connection established'))
+        .catch((err) => console.log("Error::: ", err));
+
+    this.connection.on("questions",(response: any)=>
+    {this.currentQuestion = response;
+    });
+
+
+  }
 
 
   showQuestions()
   {
     this.start=true;
-<<<<<<< HEAD
-    this.http.get('http://172.23.238.164:8080/api/quizrt/question').subscribe((res:any) => {
-    this.questions = res;
-    this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
+    // this.http.get('http://172.23.238.164:8080/api/quizrt/question').subscribe((res:any) => {
+    // this.questions = res;
+    // this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
+    this.connection.send("SendQuestions");
     this.gameClock();
 
-    });
-=======
-    // console.log('called showQuestions');
-    this.http.get('http://172.23.238.164:8080/api/quizrt/question').subscribe(
-      (res: any) => {
-        this.questions = res;
-    // this.shouldDisplayQuestions = true;
-    this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
-    this.gameClock();
-    // console.log(this.questions[0].options);
-           });
->>>>>>> 3c8d27615d506af049d7bc7f88deca78e4fee50f
+    // });
   }
 
   gameClock() {
@@ -60,19 +66,14 @@ export class SinglePlayerComponent implements OnInit {
 
 nextQuestion(){
   this.questionCounter++;
-  this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
+  this.connection.send("SendQuestions");
+  // this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
   this.resetTimer();
 }
 
 resetTimer(){
-<<<<<<< HEAD
 this.counter=10;
-=======
-  this.i++;
-  //this.quesCount++;
-  // this.score+=this.counter*2;
-  this.counter=10;
->>>>>>> 3c8d27615d506af049d7bc7f88deca78e4fee50f
+
 }
 
 scoreCalculator(optionsobject: any){
@@ -83,6 +84,7 @@ scoreCalculator(optionsobject: any){
   else{
     this.score+=0;
   }
+  console.log("came here")
  this.nextQuestion();
  }
 }

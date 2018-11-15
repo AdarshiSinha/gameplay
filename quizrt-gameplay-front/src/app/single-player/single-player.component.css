@@ -44,8 +44,8 @@
 }
 .goBack{
  margin-left: 10%;
- color: white
-  
+ color: white;
+
  }
 
 .options{
@@ -66,13 +66,8 @@ button:hover{
   color:white;
 }
 
-<<<<<<< HEAD
-#fscore{
-  color:blue;
-=======
 .question{
   color: white;
->>>>>>> 3c8d27615d506af049d7bc7f88deca78e4fee50f
 }
 
 
@@ -100,11 +95,7 @@ button:hover{
 
     .question{
       font-size:20px;
-<<<<<<< HEAD
-      color:white;
-=======
       color: white;
->>>>>>> 3c8d27615d506af049d7bc7f88deca78e4fee50f
     }
 
     #clock{

@@ -18,3 +18,11 @@ C:\Users\Adarshi\Documents\GitHub\gameplay-back\obj\Debug\netcoreapp2.1\gameplay
 C:\Users\Adarshi\Documents\GitHub\gameplay-back\obj\Debug\netcoreapp2.1\gameplay-back.RazorTargetAssemblyInfo.cache
 C:\Users\Adarshi\Documents\GitHub\gameplay-back\obj\Debug\netcoreapp2.1\gameplay-back.dll
 C:\Users\Adarshi\Documents\GitHub\gameplay-back\obj\Debug\netcoreapp2.1\gameplay-back.pdb
+C:\Users\Adarshi\Documents\GitHub\gameplay\gameplay-back\bin\Debug\netcoreapp2.1\gameplay-back.deps.json
+C:\Users\Adarshi\Documents\GitHub\gameplay\gameplay-back\bin\Debug\netcoreapp2.1\gameplay-back.runtimeconfig.json
+C:\Users\Adarshi\Documents\GitHub\gameplay\gameplay-back\bin\Debug\netcoreapp2.1\gameplay-back.runtimeconfig.dev.json
+C:\Users\Adarshi\Documents\GitHub\gameplay\gameplay-back\bin\Debug\netcoreapp2.1\gameplay-back.dll
+C:\Users\Adarshi\Documents\GitHub\gameplay\gameplay-back\bin\Debug\netcoreapp2.1\gameplay-back.pdb
+C:\Users\Adarshi\Documents\GitHub\gameplay\gameplay-back\obj\Debug\netcoreapp2.1\gameplay-back.RazorTargetAssemblyInfo.cache
+C:\Users\Adarshi\Documents\GitHub\gameplay\gameplay-back\obj\Debug\netcoreapp2.1\gameplay-back.dll
+C:\Users\Adarshi\Documents\GitHub\gameplay\gameplay-back\obj\Debug\netcoreapp2.1\gameplay-back.pdb

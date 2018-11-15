@@ -5,7 +5,7 @@
 <button mat-raised-button  *ngIf="users_found" color="primary" (click)="showQuestions()">Let's Play</button>
 
 
-<div *ngIf="!gameOver">
+<div *ngIf="start && !gameOver">
       <mat-card class="questions">
          <h2>{{currentQuestion.questionGiven}}</h2>
          <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button>
