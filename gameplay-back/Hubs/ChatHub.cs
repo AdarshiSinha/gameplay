@@ -16,7 +16,8 @@ namespace gameplay_back.hubs {
     /// This hub receives request from the front-end and responds to the specified client 
     /// </summary>
     public class ChatHub : Hub {
-        // int i=0;
+        static int i=10;
+        WaitingGamePlay game;
         HttpClient http= new HttpClient();
         
         #region Newmessage 
@@ -32,12 +33,18 @@ namespace gameplay_back.hubs {
         }
         #endregion 
         #region StartClock
-        public async Task StartClock(int i, int questionCounter) {
+        public async Task StartClock(int io, int questionCounter) {
             while(i>=0)
             {
+                Console.WriteLine(i + " is the static variable");
                 await Clients.All.SendAsync("counter",i);
                 Thread.Sleep(1000);
                 i--;
+
+                if(i<0)
+                {
+                    i=10;
+                }
                 if(questionCounter>7)
                 {
                     break;
@@ -54,7 +61,7 @@ namespace gameplay_back.hubs {
         #endregion
         #region SendMessageToCaller
         public Task SendMessageToCaller (string message) {
-            return Clients.Caller.SendAsync ("ReceiveMessage", message);
+            return Clients.Caller.SendAsync ("ReceiveMessage1", (i++));
         }
         #endregion
         // #region SendMessageToGroups
@@ -74,14 +81,16 @@ namespace gameplay_back.hubs {
         }
         #endregion
 
-        public async Task SendQuestionsToMulti(string groupname) {
-            HttpResponseMessage response = await this.http.GetAsync("http://172.23.238.164:8080/api/quizrt/question");
+        public async Task SendQuestionsToMulti(string groupname, int no_of_players) {
+            if(game.players_count== no_of_players )
+           { HttpResponseMessage response = await this.http.GetAsync("http://172.23.238.164:8080/api/quizrt/question");
             Console.WriteLine("came here");
              HttpContent content = response.Content;
             string data = await content.ReadAsStringAsync();
             JArray json = JArray.Parse(data);
             Random random = new Random();
             await Clients.Groups(groupname).SendAsync("questionsToMulti", json[random.Next(1,json.Count)]);
+        }
         }
 
 

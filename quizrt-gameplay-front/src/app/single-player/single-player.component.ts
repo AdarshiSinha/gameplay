@@ -34,7 +34,12 @@ export class SinglePlayerComponent implements OnInit {
     {this.currentQuestion = response;
     });
 
+    this.connection.on("ReceiveMessage1",(i:number)=> {
+      console.log(i + " lets see if it changes");
+    });
 
+    
+    this.connection.send("SendMessageToCaller","Hi");
   }
 
 
