@@ -24,6 +24,7 @@ namespace gameplay_back {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services) {
+            services.AddScoped<IGameRepository,GameFunctions>();
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_1);
             services.AddCors (o => o.AddPolicy ("CorsPolicy", builder => {
                 builder
@@ -34,9 +35,7 @@ namespace gameplay_back {
             }));
             services.AddSignalR ();
 
-            // Kuldeep | Added For Databasae Creation String
-            var connString = Environment.GetEnvironmentVariable("SQLSERVER_HOST") ?? "Server=localhost\\SQLEXPRESS;Database=QuizGamePlayDB;Trusted_Connection=True;";
-            services.AddDbContext<efmodel>(options => options.UseSqlServer(connString)); // End Here
+            services.AddDbContext<efmodel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +47,7 @@ namespace gameplay_back {
             }
             app.UseCors ("CorsPolicy");
             app.UseSignalR (routes => {
-                routes.MapHub<ChatHub> ("/chathub");
+                routes.MapHub<GamePlayHub> ("/gameplayhub");
             });
             // app.UseHttpsRedirection (); // To Avoid Redirection On Deployment
             app.UseMvc ();
